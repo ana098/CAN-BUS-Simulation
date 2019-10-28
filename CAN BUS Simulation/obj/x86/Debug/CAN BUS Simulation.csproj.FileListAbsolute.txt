@@ -1,0 +1,14 @@
+C:\Users\X\AppData\Local\Temporary Projects\CAN BUS Simulation\bin\Debug\CAN BUS Simulation.exe
+C:\Users\X\AppData\Local\Temporary Projects\CAN BUS Simulation\bin\Debug\CAN BUS Simulation.pdb
+C:\Users\X\AppData\Local\Temporary Projects\CAN BUS Simulation\obj\x86\Debug\CAN_BUS_Simulation.Form1.resources
+C:\Users\X\AppData\Local\Temporary Projects\CAN BUS Simulation\obj\x86\Debug\CAN_BUS_Simulation.Properties.Resources.resources
+C:\Users\X\AppData\Local\Temporary Projects\CAN BUS Simulation\obj\x86\Debug\CAN BUS Simulation.csproj.GenerateResource.Cache
+C:\Users\X\AppData\Local\Temporary Projects\CAN BUS Simulation\obj\x86\Debug\CAN BUS Simulation.exe
+C:\Users\X\AppData\Local\Temporary Projects\CAN BUS Simulation\obj\x86\Debug\CAN BUS Simulation.pdb
+D:\Ana\faks\4. GODINA\Napredno programiranje\CAN BUS Simulation\CAN BUS Simulation\obj\x86\Debug\CAN BUS Simulation.exe
+D:\Ana\faks\4. GODINA\Napredno programiranje\CAN BUS Simulation\CAN BUS Simulation\obj\x86\Debug\CAN BUS Simulation.pdb
+D:\Ana\faks\4. GODINA\Napredno programiranje\CAN BUS Simulation\CAN BUS Simulation\obj\x86\Debug\CAN_BUS_Simulation.Form1.resources
+D:\Ana\faks\4. GODINA\Napredno programiranje\CAN BUS Simulation\CAN BUS Simulation\obj\x86\Debug\CAN_BUS_Simulation.Properties.Resources.resources
+D:\Ana\faks\4. GODINA\Napredno programiranje\CAN BUS Simulation\CAN BUS Simulation\obj\x86\Debug\CAN BUS Simulation.csproj.GenerateResource.Cache
+D:\Ana\faks\4. GODINA\Napredno programiranje\CAN BUS Simulation\CAN BUS Simulation\bin\Debug\CAN BUS Simulation.exe
+D:\Ana\faks\4. GODINA\Napredno programiranje\CAN BUS Simulation\CAN BUS Simulation\bin\Debug\CAN BUS Simulation.pdb
