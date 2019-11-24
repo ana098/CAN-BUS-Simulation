@@ -35,6 +35,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.OutputTxtBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.LogTextBox = new System.Windows.Forms.RichTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.SignalPositionCmBox = new System.Windows.Forms.ComboBox();
+            this.IDtxtBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // SendInput_Btn
@@ -89,7 +94,7 @@
             // 
             // OutputTxtBox
             // 
-            this.OutputTxtBox.Location = new System.Drawing.Point(324, 223);
+            this.OutputTxtBox.Location = new System.Drawing.Point(324, 108);
             this.OutputTxtBox.Name = "OutputTxtBox";
             this.OutputTxtBox.Size = new System.Drawing.Size(359, 20);
             this.OutputTxtBox.TabIndex = 5;
@@ -98,17 +103,74 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(250, 223);
+            this.label2.Location = new System.Drawing.Point(250, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 15);
             this.label2.TabIndex = 6;
             this.label2.Text = "Output:";
             // 
+            // LogTextBox
+            // 
+            this.LogTextBox.Location = new System.Drawing.Point(12, 245);
+            this.LogTextBox.Name = "LogTextBox";
+            this.LogTextBox.Size = new System.Drawing.Size(690, 160);
+            this.LogTextBox.TabIndex = 7;
+            this.LogTextBox.Text = "";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(278, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 15);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "ID:";
+            // 
+            // SignalPositionCmBox
+            // 
+            this.SignalPositionCmBox.FormattingEnabled = true;
+            this.SignalPositionCmBox.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"});
+            this.SignalPositionCmBox.Location = new System.Drawing.Point(578, 14);
+            this.SignalPositionCmBox.Name = "SignalPositionCmBox";
+            this.SignalPositionCmBox.Size = new System.Drawing.Size(41, 21);
+            this.SignalPositionCmBox.TabIndex = 9;
+            // 
+            // IDtxtBox
+            // 
+            this.IDtxtBox.Location = new System.Drawing.Point(324, 15);
+            this.IDtxtBox.Name = "IDtxtBox";
+            this.IDtxtBox.Size = new System.Drawing.Size(28, 20);
+            this.IDtxtBox.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(465, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 15);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Signal position:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 355);
+            this.ClientSize = new System.Drawing.Size(714, 417);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.IDtxtBox);
+            this.Controls.Add(this.SignalPositionCmBox);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.LogTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.OutputTxtBox);
             this.Controls.Add(this.label1);
@@ -132,6 +194,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox OutputTxtBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RichTextBox LogTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox SignalPositionCmBox;
+        private System.Windows.Forms.TextBox IDtxtBox;
+        private System.Windows.Forms.Label label4;
     }
 }
 

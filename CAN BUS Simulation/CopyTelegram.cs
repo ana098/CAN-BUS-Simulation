@@ -7,19 +7,15 @@ namespace CAN_BUS_Simulation
 {
     class CopyTelegram
     {
-        StringBuilder StrBuild = new StringBuilder();
-        int i;
+        StringBuilder amountMsg = new StringBuilder();
 
-        public string CopyTg(uint ID, byte[] Payload, byte Signal)
+        public string CopyTg(byte[] Payload)
         {
-            StringBuilder amountMsg = new StringBuilder();
+            amountMsg.Clear();
 
-            amountMsg.AppendFormat("{0:x2} ", ID);
-            amountMsg.AppendFormat("{0:x2} ", Signal);
-
-            for (i = 1; i < 8; i++)
+            foreach (byte b in Payload)
             {
-                amountMsg.AppendFormat("{0:x2} ", Payload[i]);
+                amountMsg.AppendFormat("{0:x2} ", b);
             }
 
             return amountMsg.ToString().ToUpper();

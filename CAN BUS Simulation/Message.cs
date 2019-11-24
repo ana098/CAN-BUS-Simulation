@@ -10,7 +10,6 @@ namespace CAN_BUS_Simulation
 
         public virtual uint GetId(string strID) { return 0; }
         public virtual byte[] GetPayload(string Payload) { return new byte[] {00}; }
-        public virtual byte GetSignal(string Signal) { return 0; }
     }
 
 }

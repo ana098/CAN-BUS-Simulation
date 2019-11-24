@@ -8,11 +8,12 @@ namespace CAN_BUS_Simulation
 {
     class LogFile
     {
+        //string a;
         string Successfully = "Successfully sent!!  ->   ";
         string Error = "Error writing";
         int i;
         static string FileName = @"C:\Users\X\Desktop\Tx Rx " + DateTime.Today.ToString("MM/dd/yyyy") + ".txt";
-      //  BinaryWriter bw = new BinaryWriter (File.OpenWrite(FileName));
+
 
         public void WriteLogTx(uint ID, byte[] Payload, byte Signal, string method)
         {
@@ -24,19 +25,10 @@ namespace CAN_BUS_Simulation
                 amountMsg.AppendFormat("{0:x2} ", ID);
                 Payload[0] = Signal;
 
-                for (i = 0; i < 8; i++)
+                foreach (byte b in Payload)
                 {
-                    amountMsg.AppendFormat("{0:x2} ", Payload[i]);
+                    amountMsg.AppendFormat("{0:x2} ", b);
                 }
-
-                // return amountMsg.ToString().ToUpper();
-
-                /* ToOutputID = ID.ToString();
-                 Payload[0] = Signal;
-                     for (i = 1; i < 8; i++)
-                     {
-                         ToOutputP += Payload[i].ToString();
-                     }*/
 
                 bw.Write(new UTF8Encoding().GetBytes( Successfully + method + " Tx :" + amountMsg.ToString().ToUpper()));
                 bw.Write(new UTF8Encoding().GetBytes(Environment.NewLine));

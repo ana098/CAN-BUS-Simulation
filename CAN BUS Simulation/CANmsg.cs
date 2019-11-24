@@ -9,40 +9,25 @@ namespace CAN_BUS_Simulation
     class CANmsg:Message
     {
         uint ID;
-        byte Signal;
         byte tempID;
         byte[] Payload;
-        string tempByte;
-        int i;
-        string ToOutputID;
-        string ToOutputP;
-        byte[] DP;
+
 
         ByteConverter ByteConv = new ByteConverter();
+        Conversion conv = new Conversion();
 
             public CANmsg(uint ID, byte [] Payload)
             {
                 this.ID = ID;
                 this.Payload = Payload;
-                Signal = Payload[0];
             }
 
-    public byte[] DefPayload {get;set;}
-           /* {
-                get
-                {
-                    return DP;
-                }
-                set
-                {
-                    DP = new byte[] { 0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7 };
-                }
-            }*/
+            public byte[] DefPayload {get;set;}
 
             public CANmsg()
             {
-                DefPayload = new byte[] { 0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7 };
-                this.Payload = new byte[] {0xF0,0xF1,0xF2,0xF3,0xF4,0xF5,0xF6,0xF7};
+                DefPayload = new byte[] { 0X00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }; 
+                Payload = new byte[] {0xF0,0xF1,0xF2,0xF3,0xF4,0xF5,0xF6,0xF7};
                 this.ID = 0xFF;
             }
 
@@ -55,34 +40,8 @@ namespace CAN_BUS_Simulation
 
             public override byte[] GetPayload(string PayLd)
             {
-                    for (int b = 1; b < 8; b++)
-                    {
-                        tempByte = PayLd.Substring(i, 4);
-                        this.Payload[b] = (byte)ByteConv.ConvertFromString(tempByte);
-                        i += 4;
-                        
-                    }
-                    i = 0;
-                return this.Payload;
-            }
-
-            public override byte GetSignal(string Signal)
-            {
-                var tempSignal = (byte)ByteConv.ConvertFromString(Signal);
-                return tempSignal;
-            }
-
-
-
-            public string OutputMsg(uint ID, byte[] Payload, byte Signal)       
-            {
-                ToOutputID = ID.ToString();
-                Payload[0] = Signal;
-                for (i = 1; i < 8; i++)
-                {
-                    ToOutputP += Payload[i].ToString();
-                }
-                return ToOutputID+ " " + ToOutputP;
+                Payload = conv.StringToByteArray(PayLd);
+                return Payload;
             }
 
     }
