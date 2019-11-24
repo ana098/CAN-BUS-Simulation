@@ -17,21 +17,20 @@ namespace CAN_BUS_Simulation
         }
 
         string PrevPayloadTXT;
-        byte[] PrevPayload;
-        UInt32 inputID;
-        byte[] inputPayload;
-        byte inputSignal;
         int counter = 0;
         string tempPayload;
+        byte[] buffer;
         
-        CANmsg CanMessage = new CANmsg();
-        CopySignal CpSignal = new CopySignal();
-        CopyTelegram CpTelegram = new CopyTelegram();
         LogFile WriteLog = new LogFile();
-        string Date = DateTime.Now.ToString();
+        Conversion conv = new Conversion();
+        CANInput Input = new CANInput();
+        CANOutput Output = new CANOutput();
+        static Random random = new Random();
 
         private void InputSend(object sender, EventArgs e)
         {
+            InputTxtBox.Text = GetRandomHexNumber(16);
+            OutputTxtBox.ResetText();
 
             if (CopySignalRB.Checked == false && CopyTelegramRB.Checked == false)
             {
@@ -41,54 +40,62 @@ namespace CAN_BUS_Simulation
             {
                 if (InputTxtBox.Text != null)
                 {
-                    inputID = CanMessage.GetId(InputTxtBox.Text.Substring(0, 4));   // odvoji id poruke
-                    inputPayload = CanMessage.GetPayload(InputTxtBox.Text.Substring(9, 28));
-                    tempPayload = InputTxtBox.Text.Substring(9, 28);
-                    inputSignal = CanMessage.GetSignal(InputTxtBox.Text.Substring(5,4));
-                    inputPayload[0] = inputSignal;
+                    tempPayload = InputTxtBox.Text;
                 }
                 if (CopySignalRB.Checked == true)
                 {
                     if (counter == 0)
                     {
-                       WriteLog.Start(Date);
-                       WriteLog.WriteLogTx(inputID, inputPayload, inputSignal, CopySignalRB.Name);
-                        OutputTxtBox.Text = CpSignal.CopySg(inputID, CanMessage.DefPayload, inputSignal); //prvi klik uzima defaultni value
-                        counter++;
-                       WriteLog.WriteLogRx(OutputTxtBox.Text, CopySignalRB.Name);
-
+                       Input.CAN_Input(InputTxtBox.Text,Convert.ToInt16(SignalPositionCmBox.SelectedItem));
+                       LogTextBox.Text = BitConverter.ToString(CANInput.InPayload); 
+                       OutputTxtBox.Text = Output.CAN_Output("CS", true);
+                       LogTextBox.Text = LogTextBox.Text + "\n" + CANOutput.OutPayload + "\n";
+                       counter++;
                     }
+
                     else
                     {
-                      WriteLog.WriteLogTx(inputID, inputPayload, inputSignal, CopySignalRB.Name);
-                        PrevPayload = CanMessage.GetPayload(PrevPayloadTXT);
-                        OutputTxtBox.Text = CpSignal.CopySg(inputID, PrevPayload, inputSignal); //uzmi prethodnu vrijednost
-                      WriteLog.WriteLogRx(OutputTxtBox.Text,CopySignalRB.Name);
+                        Input.CAN_Input(InputTxtBox.Text, PrevPayloadTXT, Convert.ToInt16(SignalPositionCmBox.SelectedItem));
+                        LogTextBox.Text = LogTextBox.Text + "\n" + BitConverter.ToString(CANInput.InPayload);
+                        Output.CAN_Output("CS", false);
+                        OutputTxtBox.Text = CANOutput.OutPayload;
+                        LogTextBox.Text = LogTextBox.Text + "\n" + CANOutput.OutPayload + "\n";
                     }
-                    // Outpt = CanMessage.OutputMsg(inputID, inputPayload);    //vraća id i payload zajedno kao string
-                    //pozvati copysignal i dati ovaj output
-                    // MessageBox.Show(Outpt);
 
-                }
-                else 
-                {
-                      WriteLog.WriteError();
                 }
 
                 PrevPayloadTXT = tempPayload;
             }
 
 
-
             if (CopyTelegramRB.Checked == true)
             {
-                WriteLog.WriteLogTx(inputID, inputPayload, inputSignal, CopyTelegramRB.Name);
-                OutputTxtBox.Text = CpTelegram.CopyTg(inputID, inputPayload, inputSignal);
-                WriteLog.WriteLogRx(OutputTxtBox.Text, CopyTelegramRB.Name);
+                Input.CAN_Input(InputTxtBox.Text);
+                LogTextBox.Text = LogTextBox.Text + "\n" + BitConverter.ToString(CANInput.InPayload);
+                Output.CAN_Output("CT", false);
+                OutputTxtBox.Text = CANOutput.OutPayload;
+                LogTextBox.Text = LogTextBox.Text + "\n" + CANOutput.OutPayload + "\n";
+            }
+
+        }
+      
+
+        public string GetRandomHexNumber(int digits)
+        {
+            while (true)
+            {
+                buffer = new byte[digits / 2];
+                random.NextBytes(buffer);
+                System.Threading.Thread.Sleep(500); // pola sekunde
+
+                StringBuilder hex = new StringBuilder(buffer.Length * 2);
+                foreach (byte b in buffer)
+                    hex.AppendFormat("{0:x2}", b);
+
+                return hex.ToString().ToUpper();
+
             }
         }
+
     }
 }
-
-
-//0xA1 0xFF0x000x000x000x000x000x000x00
